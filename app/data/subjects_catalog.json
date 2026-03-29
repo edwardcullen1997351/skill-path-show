@@ -1,0 +1,208 @@
+{
+  "subjects": [
+    {
+      "name": "Introduction to Programming",
+      "code": "CS101",
+      "description": "Basic programming concepts using Python",
+      "covered_skills": ["python", "programming_basics"],
+      "skill_weights": {
+        "python": 0.8,
+        "programming_basics": 0.9
+      },
+      "level": "beginner",
+      "credits": 4
+    },
+    {
+      "name": "Data Structures and Algorithms",
+      "code": "CS201",
+      "description": "Fundamental data structures and algorithm design",
+      "covered_skills": ["algorithms", "data_structures", "programming_basics"],
+      "skill_weights": {
+        "algorithms": 0.9,
+        "data_structures": 0.9,
+        "programming_basics": 0.6
+      },
+      "level": "intermediate",
+      "credits": 4
+    },
+    {
+      "name": "Object Oriented Programming",
+      "code": "CS202",
+      "description": "OOP principles and design patterns",
+      "covered_skills": ["object_oriented", "python", "java"],
+      "skill_weights": {
+        "object_oriented": 0.9,
+        "python": 0.6,
+        "java": 0.6
+      },
+      "level": "intermediate",
+      "credits": 3
+    },
+    {
+      "name": "Web Development Fundamentals",
+      "code": "CS301",
+      "description": "Introduction to web technologies and development",
+      "covered_skills": ["html_css", "javascript", "responsive_design"],
+      "skill_weights": {
+        "html_css": 0.9,
+        "javascript": 0.8,
+        "responsive_design": 0.7
+      },
+      "level": "intermediate",
+      "credits": 4
+    },
+    {
+      "name": "Database Systems",
+      "code": "CS302",
+      "description": "Relational databases and SQL",
+      "covered_skills": ["sql", "database_design"],
+      "skill_weights": {
+        "sql": 0.9,
+        "database_design": 0.8
+      },
+      "level": "intermediate",
+      "credits": 3
+    },
+    {
+      "name": "React Development",
+      "code": "CS401",
+      "description": "Building modern web apps with React",
+      "covered_skills": ["react", "javascript", "typescript"],
+      "skill_weights": {
+        "react": 0.9,
+        "javascript": 0.7,
+        "typescript": 0.7
+      },
+      "level": "advanced",
+      "credits": 3
+    },
+    {
+      "name": "Backend Development with Node.js",
+      "code": "CS402",
+      "description": "Server-side JavaScript development",
+      "covered_skills": ["nodejs", "api_design", "javascript"],
+      "skill_weights": {
+        "nodejs": 0.9,
+        "api_design": 0.8,
+        "javascript": 0.6
+      },
+      "level": "advanced",
+      "credits": 3
+    },
+    {
+      "name": "Python for Data Science",
+      "code": "DA301",
+      "description": "Python for data analysis and manipulation",
+      "covered_skills": ["python", "data_analysis", "data_visualization"],
+      "skill_weights": {
+        "python": 0.8,
+        "data_analysis": 0.9,
+        "data_visualization": 0.8
+      },
+      "level": "intermediate",
+      "credits": 4
+    },
+    {
+      "name": "Statistics and Probability",
+      "code": "DA302",
+      "description": "Statistical methods and probability theory",
+      "covered_skills": ["statistics", "data_analysis"],
+      "skill_weights": {
+        "statistics": 0.9,
+        "data_analysis": 0.7
+      },
+      "level": "intermediate",
+      "credits": 4
+    },
+    {
+      "name": "Machine Learning Basics",
+      "code": "ML301",
+      "description": "Introduction to machine learning algorithms",
+      "covered_skills": ["machine_learning", "python", "data_analysis"],
+      "skill_weights": {
+        "machine_learning": 0.9,
+        "python": 0.7,
+        "data_analysis": 0.6
+      },
+      "level": "advanced",
+      "credits": 4
+    },
+    {
+      "name": "Data Science Capstone",
+      "code": "DS401",
+      "description": "End-to-end data science projects",
+      "covered_skills": ["data_science", "data_visualization", "statistics"],
+      "skill_weights": {
+        "data_science": 0.9,
+        "data_visualization": 0.7,
+        "statistics": 0.6
+      },
+      "level": "advanced",
+      "credits": 4
+    },
+    {
+      "name": "DevOps and Cloud Computing",
+      "code": "DE301",
+      "description": "Cloud platforms and DevOps practices",
+      "covered_skills": ["docker", "aws", "linux", "cloud_computing"],
+      "skill_weights": {
+        "docker": 0.9,
+        "aws": 0.8,
+        "linux": 0.8,
+        "cloud_computing": 0.8
+      },
+      "level": "advanced",
+      "credits": 4
+    },
+    {
+      "name": "API Design and Development",
+      "code": "CS403",
+      "description": "RESTful API design patterns",
+      "covered_skills": ["api_design", "python", "fastapi"],
+      "skill_weights": {
+        "api_design": 0.9,
+        "python": 0.7,
+        "fastapi": 0.8
+      },
+      "level": "advanced",
+      "credits": 3
+    },
+    {
+      "name": "Version Control with Git",
+      "code": "CS102",
+      "description": "Git and collaborative development",
+      "covered_skills": ["git"],
+      "skill_weights": {
+        "git": 0.9
+      },
+      "level": "beginner",
+      "credits": 2
+    },
+    {
+      "name": "Advanced Database Systems",
+      "code": "CS401",
+      "description": "Advanced SQL and NoSQL databases",
+      "covered_skills": ["sql", "mongodb", "database_design"],
+      "skill_weights": {
+        "sql": 0.8,
+        "mongodb": 0.8,
+        "database_design": 0.7
+      },
+      "level": "advanced",
+      "credits": 3
+    },
+    {
+      "name": "Software Engineering",
+      "code": "CS303",
+      "description": "Software development lifecycle and practices",
+      "covered_skills": ["software_engineering", "git", "project_management"],
+      "skill_weights": {
+        "software_engineering": 0.9,
+        "git": 0.6,
+        "project_management": 0.5
+      },
+      "level": "intermediate",
+      "credits": 3
+    }
+  ]
+}

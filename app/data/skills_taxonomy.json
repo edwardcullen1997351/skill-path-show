@@ -1,0 +1,54 @@
+{
+  "programming": {
+    "python": ["python", "python programming", "py", "python programming language"],
+    "javascript": ["javascript", "js", "ecmascript", "jscript"],
+    "java": ["java", "java programming", "java language"],
+    "cpp": ["c++", "cpp", "c plus plus"],
+    "c_programming": ["c programming", "c language"],
+    "csharp": ["c#", "csharp", "c sharp"],
+    "typescript": ["typescript", "ts"]
+  },
+  "web_technologies": {
+    "html_css": ["html", "css", "html css", "html5", "css3", "web design"],
+    "react": ["react", "reactjs", "react.js", "react library"],
+    "angular": ["angular", "angularjs", "angular.js"],
+    "vue": ["vue", "vuejs", "vue.js", "vuejs"],
+    "django": ["django", "django python", "django framework"],
+    "fastapi": ["fastapi", "fast api"],
+    "flask": ["flask", "flask python"],
+    "nodejs": ["node", "nodejs", "node.js", "node js"],
+    "api_design": ["api", "apis", "rest api", "restful", "web service", "api development"],
+    "responsive_design": ["responsive", "responsive design", "mobile responsive", "responsive web"]
+  },
+  "databases": {
+    "sql": ["sql", "mysql", "postgresql", "postgres", "database query", "query language"],
+    "database_design": ["database", "db", "database design", "dbms", "rdbms"],
+    "mongodb": ["mongodb", "mongo", "nosql"]
+  },
+  "data_skills": {
+    "data_analysis": ["data analysis", "analytics", "analyzing data", "data analytics"],
+    "data_visualization": ["data visualization", "data viz", "visualization", "charts", "graphs", "tableau"],
+    "machine_learning": ["machine learning", "ml", "ml algorithms", "artificial intelligence", "ai"],
+    "statistics": ["statistics", "statistical analysis", "statistical", "probability"],
+    "data_science": ["data science", "ds", "data scientist"]
+  },
+  "tools_technologies": {
+    "git": ["git", "version control", "github", "gitlab", "bitbucket"],
+    "docker": ["docker", "containerization", "containers", "dockerfile"],
+    "aws": ["aws", "amazon web services", "ec2", "s3", "lambda"],
+    "linux": ["linux", "unix", "ubuntu", "centos", "bash"],
+    "cloud_computing": ["cloud", "cloud computing", "azure", "gcp", "google cloud"]
+  },
+  "computer_science": {
+    "algorithms": ["algorithms", "algorithm", "algorithm design"],
+    "data_structures": ["data structures", "ds", "data structure"],
+    "programming_basics": ["programming", "coding", "computer programming"],
+    "object_oriented": ["oop", "object oriented", "oops", "object-oriented programming"],
+    "software_engineering": ["software engineering", "se", "software development"]
+  },
+  "business_skills": {
+    "project_management": ["project management", "pm", "agile", "scrum"],
+    "communication": ["communication", "soft skills", "presentation"],
+    "problem_solving": ["problem solving", "critical thinking", "analytical"]
+  }
+}

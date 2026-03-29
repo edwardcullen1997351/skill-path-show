@@ -1,0 +1,107 @@
+{
+  "frontend_developer": {
+    "role_name": "Frontend Developer",
+    "role_key": "frontend_developer",
+    "required_skills": [
+      {"skill": "javascript", "weightage": 0.95},
+      {"skill": "html_css", "weightage": 0.90},
+      {"skill": "react", "weightage": 0.85},
+      {"skill": "git", "weightage": 0.50},
+      {"skill": "responsive_design", "weightage": 0.80},
+      {"skill": "typescript", "weightage": 0.60}
+    ],
+    "description": "Builds user interfaces and web applications using modern JavaScript frameworks"
+  },
+  "backend_developer": {
+    "role_name": "Backend Developer",
+    "role_key": "backend_developer",
+    "required_skills": [
+      {"skill": "python", "weightage": 0.90},
+      {"skill": "sql", "weightage": 0.85},
+      {"skill": "git", "weightage": 0.55},
+      {"skill": "api_design", "weightage": 0.85},
+      {"skill": "docker", "weightage": 0.65},
+      {"skill": "linux", "weightage": 0.50}
+    ],
+    "description": "Develops server-side logic, APIs, and database systems"
+  },
+  "data_analyst": {
+    "role_name": "Data Analyst",
+    "role_key": "data_analyst",
+    "required_skills": [
+      {"skill": "python", "weightage": 0.90},
+      {"skill": "sql", "weightage": 0.85},
+      {"skill": "data_analysis", "weightage": 0.95},
+      {"skill": "statistics", "weightage": 0.80},
+      {"skill": "data_visualization", "weightage": 0.85},
+      {"skill": "excel", "weightage": 0.60}
+    ],
+    "description": "Analyzes data to derive insights and creates visualizations"
+  },
+  "full_stack_developer": {
+    "role_name": "Full Stack Developer",
+    "role_key": "full_stack_developer",
+    "required_skills": [
+      {"skill": "javascript", "weightage": 0.85},
+      {"skill": "python", "weightage": 0.80},
+      {"skill": "sql", "weightage": 0.75},
+      {"skill": "react", "weightage": 0.75},
+      {"skill": "api_design", "weightage": 0.80},
+      {"skill": "git", "weightage": 0.55},
+      {"skill": "docker", "weightage": 0.50}
+    ],
+    "description": "Works on both frontend and backend of web applications"
+  },
+  "devops_engineer": {
+    "role_name": "DevOps Engineer",
+    "role_key": "devops_engineer",
+    "required_skills": [
+      {"skill": "docker", "weightage": 0.95},
+      {"skill": "linux", "weightage": 0.90},
+      {"skill": "aws", "weightage": 0.85},
+      {"skill": "git", "weightage": 0.70},
+      {"skill": "python", "weightage": 0.60},
+      {"skill": "cloud_computing", "weightage": 0.80}
+    ],
+    "description": "Manages CI/CD pipelines, cloud infrastructure, and automation"
+  },
+  "data_scientist": {
+    "role_name": "Data Scientist",
+    "role_key": "data_scientist",
+    "required_skills": [
+      {"skill": "python", "weightage": 0.95},
+      {"skill": "machine_learning", "weightage": 0.90},
+      {"skill": "statistics", "weightage": 0.85},
+      {"skill": "data_analysis", "weightage": 0.85},
+      {"skill": "sql", "weightage": 0.70},
+      {"skill": "data_visualization", "weightage": 0.65}
+    ],
+    "description": "Builds ML models and analyzes complex datasets"
+  },
+  "ml_engineer": {
+    "role_name": "Machine Learning Engineer",
+    "role_key": "ml_engineer",
+    "required_skills": [
+      {"skill": "python", "weightage": 0.95},
+      {"skill": "machine_learning", "weightage": 0.95},
+      {"skill": "data_science", "weightage": 0.80},
+      {"skill": "sql", "weightage": 0.70},
+      {"skill": "docker", "weightage": 0.65},
+      {"skill": "cloud_computing", "weightage": 0.70}
+    ],
+    "description": "Deploys and maintains machine learning models in production"
+  },
+  "software_engineer": {
+    "role_name": "Software Engineer",
+    "role_key": "software_engineer",
+    "required_skills": [
+      {"skill": "algorithms", "weightage": 0.85},
+      {"skill": "data_structures", "weightage": 0.85},
+      {"skill": "python", "weightage": 0.80},
+      {"skill": "git", "weightage": 0.60},
+      {"skill": "object_oriented", "weightage": 0.75},
+      {"skill": "sql", "weightage": 0.55}
+    ],
+    "description": "Develops software applications and systems"
+  }
+}
