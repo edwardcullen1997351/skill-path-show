@@ -1,27 +1,101 @@
 """
 Cosine similarity module for skill matching.
 
-This module provides embedding-like similarity using cosine similarity
-to find similar skills even when they're not exact matches.
+This module provides hybrid similarity matching:
+1. Semantic matching using sentence-transformer embeddings (primary)
+2. N-gram similarity using cosine similarity (fallback)
+
+The hybrid approach uses semantic matching when available,
+falling back to n-gram when embeddings are not available.
 """
 
 import math
+import os
 from typing import List, Dict, Tuple, Optional
 from collections import defaultdict
 
 
 class SkillSimilarity:
     """
-    Skill similarity calculator using cosine similarity.
+    Hybrid skill similarity calculator.
     
-    Uses a simple bag-of-words approach to create skill embeddings
-    and calculate similarity between skills.
+    Uses semantic embeddings when available (sentence-transformers),
+    falls back to n-gram cosine similarity otherwise.
     """
+    
+    SEMANTIC_THRESHOLD = 0.3
     
     def __init__(self):
         """Initialize the similarity calculator."""
         self._skill_vectors: Dict[str, Dict[str, float]] = {}
         self._initialized = False
+        self._embedding_model = None
+        self._use_semantic = self._check_semantic_available()
+    
+    def _check_semantic_available(self) -> bool:
+        """Check if semantic embeddings are available."""
+        try:
+            from app.utils.embeddings import is_embedding_available
+            return is_embedding_available()
+        except ImportError:
+            return False
+    
+    @property
+    def use_semantic(self) -> bool:
+        """Check if semantic matching is enabled."""
+        return self._use_semantic
+    
+    @property
+    def embedding_model(self):
+        """Get the embedding model (lazy loaded)."""
+        if self._embedding_model is None:
+            try:
+                from app.utils.embeddings import get_embedding_model
+                self._embedding_model = get_embedding_model()
+            except ImportError:
+                self._embedding_model = None
+        return self._embedding_model
+    
+    def _semantic_find_similar(
+        self,
+        target_skill: str,
+        candidate_skills: List[str],
+        top_k: int
+    ) -> List[Tuple[str, float]]:
+        """
+        Find similar skills using semantic embeddings.
+        
+        Args:
+            target_skill: Target skill
+            candidate_skills: Candidate skills
+            top_k: Number of results
+            
+        Returns:
+            List of (skill, score) tuples
+        """
+        if not self.embedding_model or not self._use_semantic:
+            return []
+        
+        try:
+            from app.utils.embeddings import get_skills_index
+            index = get_skills_index()
+            
+            results = index.find_similar_skills(
+                query=target_skill,
+                top_k=top_k,
+                threshold=self.SEMANTIC_THRESHOLD
+            )
+            
+            matched_skills = {r["skill_id"] for r in results}
+            
+            filtered = [s for s in candidate_skills if s in matched_skills]
+            
+            score_map = {r["skill_id"]: r["score"] for r in results}
+            
+            return [(s, score_map.get(s, 0)) for s in filtered if s in score_map]
+        except Exception as e:
+            print(f"Semantic matching failed: {e}")
+            return []
     
     def _tokenize_skill(self, skill: str) -> List[str]:
         """
@@ -121,19 +195,64 @@ class SkillSimilarity:
         target_skill: str,
         candidate_skills: List[str],
         threshold: float = 0.3,
-        top_k: int = 5
+        top_k: int = 5,
+        use_semantic: bool = True
     ) -> List[Tuple[str, float]]:
         """
-        Find skills similar to the target skill.
+        Find skills similar to the target skill using hybrid approach.
         
         Args:
             target_skill: Skill to find matches for
             candidate_skills: List of candidate skills
             threshold: Minimum similarity score (0-1)
             top_k: Maximum number of results
+            use_semantic: Whether to try semantic matching first
             
         Returns:
-            List of (skill, similarity_score) tuples
+            List of (skill, similarity_score, method) tuples with method info
+        """
+        if not candidate_skills:
+            return []
+        
+        results = []
+        
+        if use_semantic and self._use_semantic:
+            semantic_results = self._semantic_find_similar(
+                target_skill, candidate_skills, top_k * 2
+            )
+            results.extend([(s, score, "semantic") for s, score in semantic_results])
+        
+        if len(results) < top_k:
+            ngram_results = self._ngram_find_similar(
+                target_skill, candidate_skills, threshold, top_k * 2
+            )
+            
+            existing = {s for s, _, _ in results}
+            for skill, score in ngram_results:
+                if skill not in existing:
+                    results.append((skill, score, "ngram"))
+        
+        results.sort(key=lambda x: x[1], reverse=True)
+        return [(s, score) for s, score, _ in results[:top_k]]
+    
+    def _ngram_find_similar(
+        self,
+        target_skill: str,
+        candidate_skills: List[str],
+        threshold: float,
+        top_k: int
+    ) -> List[Tuple[str, float]]:
+        """
+        Find similar skills using n-gram cosine similarity (fallback).
+        
+        Args:
+            target_skill: Target skill
+            candidate_skills: Candidate skills
+            threshold: Minimum similarity
+            top_k: Number of results
+            
+        Returns:
+            List of (skill, score) tuples
         """
         # Build vectors
         all_skills = [target_skill] + candidate_skills
@@ -162,9 +281,7 @@ class SkillSimilarity:
             if similarity >= threshold:
                 similarities.append((skill, similarity))
         
-        # Sort by similarity (descending) and take top_k
         similarities.sort(key=lambda x: x[1], reverse=True)
-        
         return similarities[:top_k]
     
     def get_skill_similarity_matrix(
@@ -247,33 +364,63 @@ def get_skill_similarity() -> SkillSimilarity:
 def find_similar_skills(
     target: str,
     candidates: List[str],
-    threshold: float = 0.3
+    threshold: float = 0.3,
+    top_k: int = 5,
+    use_semantic: bool = True
 ) -> List[Tuple[str, float]]:
     """
-    Convenience function to find similar skills.
+    Convenience function to find similar skills (hybrid).
     
     Args:
         target: Target skill
         candidates: Candidate skills
         threshold: Minimum similarity threshold
+        top_k: Maximum number of results
+        use_semantic: Use semantic matching first
         
     Returns:
         List of (skill, score) tuples
     """
     return get_skill_similarity().find_similar_skills(
-        target, candidates, threshold
+        target, candidates, threshold, top_k, use_semantic
     )
 
 
-def find_closest_skill(query: str, options: List[str]) -> Optional[Tuple[str, float]]:
+def find_closest_skill(
+    query: str,
+    options: List[str],
+    use_semantic: bool = True
+) -> Optional[Tuple[str, float]]:
     """
     Convenience function to find closest matching skill.
     
     Args:
         query: Query string
         options: List of possible matches
+        use_semantic: Use semantic matching
         
     Returns:
         Tuple of (best_match, score) or None
     """
-    return get_skill_similarity().find_closest_match(query, options)
+    similar = get_skill_similarity().find_similar_skills(
+        query,
+        options,
+        threshold=0.0,
+        top_k=1,
+        use_semantic=use_semantic
+    )
+    
+    if similar:
+        return similar[0]
+    
+    return None
+
+
+def is_semantic_matching_available() -> bool:
+    """
+    Check if semantic matching is available.
+    
+    Returns:
+        True if embedding model is loaded
+    """
+    return get_skill_similarity().use_semantic

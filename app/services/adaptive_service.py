@@ -52,9 +52,8 @@ class AdaptiveRecommendationService:
         """
         # Get base recommendations from MECE algorithm
         mece_engine = get_mece_engine()
-        mece_recommendations = mece_engine.recommend_subjects(
-            missing_skills, top_k=top_k * 2
-        )
+        mece_result = mece_engine.generate_recommendations(missing_skills)
+        mece_recommendations = mece_result.get("selected_subjects", [])
         
         if not use_collaborative and not use_rl:
             return {

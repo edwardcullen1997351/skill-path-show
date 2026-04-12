@@ -6,8 +6,14 @@ for generating MECE subject recommendations.
 """
 
 from fastapi import APIRouter, HTTPException, status
-from app.models.recommendations import RecommendationInput, RecommendationOutput
+from app.models.recommendations import (
+    RecommendationInput,
+    RecommendationOutput,
+    LearningPathInput,
+    LearningPathOutput
+)
 from app.services import get_recommendation_service
+from app.utils.mece_algorithm import get_mece_extended
 
 router = APIRouter()
 
@@ -112,3 +118,63 @@ async def recommendations_health():
         "service": "recommendations",
         "version": "1.0.0"
     }
+
+
+@router.post(
+    "/generate-learning-path",
+    response_model=LearningPathOutput,
+    summary="Generate Learning Path with MECE++",
+    description="""
+    Generate an optimized learning path with:
+    - **MECE++ Algorithm**: Extended greedy set cover with cost constraints
+    - **Sequence Optimization**: Topological sort respecting prerequisites
+    - **Time Budgeting**: Split into terms based on weekly hours
+    
+    ## Features
+    - Automatically includes prerequisites
+    - Respects credit limits per term
+    - Orders subjects by dependency
+    - Provides complete duration estimates
+    
+    ## Output Details
+    - **learning_path**: Subjects organized by term with hours/credits
+    - **total_coverage**: Ratio of skills covered (0-1)
+    - **summary**: Total duration, hours, and credits
+    """,
+    tags=["Learning Path"]
+)
+async def generate_learning_path(input_data: LearningPathInput) -> LearningPathOutput:
+    """
+    Generate a complete learning path with sequence optimization.
+    
+    Args:
+        input_data: LearningPathInput with missing_skills and constraints
+        
+    Returns:
+        LearningPathOutput with ordered subjects and duration
+        
+    Raises:
+        HTTPException: If no missing skills provided
+    """
+    if not input_data.missing_skills:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing skills list cannot be empty"
+        )
+    
+    mece_extended = get_mece_extended()
+    
+    try:
+        result = mece_extended.generate_learning_plan(
+            missing_skills=input_data.missing_skills,
+            weekly_hours=input_data.weekly_hours,
+            max_credits_per_term=input_data.max_credits_per_term,
+            weeks_per_term=input_data.weeks_per_term,
+            include_prerequisites=input_data.include_prerequisites
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error generating learning path: {str(e)}"
+        )

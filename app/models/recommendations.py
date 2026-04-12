@@ -114,3 +114,117 @@ class RecommendationOutput(BaseModel):
                 "remaining_gaps": []
             }
         }
+
+
+class LearningPathInput(BaseModel):
+    """Input model for learning path generation."""
+    missing_skills: List[str] = Field(
+        ...,
+        description="List of skills that need to be covered",
+        min_length=1
+    )
+    weekly_hours: int = Field(
+        default=10,
+        description="Available learning hours per week",
+        ge=1,
+        le=40
+    )
+    max_credits_per_term: int = Field(
+        default=9,
+        description="Maximum credits per term",
+        ge=1,
+        le=20
+    )
+    weeks_per_term: int = Field(
+        default=8,
+        description="Number of weeks per term",
+        ge=4,
+        le=16
+    )
+    preferred_subjects: Optional[List[str]] = Field(
+        default=None,
+        description="Optional list of preferred subject codes"
+    )
+    include_prerequisites: bool = Field(
+        default=True,
+        description="Whether to include prerequisite subjects"
+    )
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "missing_skills": ["react", "typescript", "api_design"],
+                "weekly_hours": 10,
+                "max_credits_per_term": 9,
+                "include_prerequisites": True
+            }
+        }
+
+
+class SubjectInTerm(BaseModel):
+    """Subject within a term/semester."""
+    subject_code: str
+    subject_name: str
+    covered_skills: List[str]
+    level: str
+    credits: int
+    estimated_hours: int
+
+
+class Term(BaseModel):
+    """A single term/semester in the learning path."""
+    term: int
+    subjects: List[SubjectInTerm]
+    total_hours: int
+    total_credits: int
+
+
+class LearningPathSummary(BaseModel):
+    """Summary of the learning path."""
+    total_terms: int
+    total_weeks: int
+    total_months: int
+    total_hours: int
+    total_credits: int
+    weekly_hours: int
+
+
+class LearningPathOutput(BaseModel):
+    """Output model for learning path generation."""
+    learning_path: List[Term]
+    total_coverage: float
+    remaining_gaps: List[str]
+    summary: LearningPathSummary
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "learning_path": [
+                    {
+                        "term": 1,
+                        "subjects": [
+                            {
+                                "subject_code": "CS101",
+                                "subject_name": "Introduction to Programming",
+                                "covered_skills": ["python", "programming_basics"],
+                                "level": "beginner",
+                                "credits": 4,
+                                "estimated_hours": 40
+                            }
+                        ],
+                        "total_hours": 40,
+                        "total_credits": 4
+                    }
+                ],
+                "total_coverage": 0.85,
+                "remaining_gaps": [],
+                "summary": {
+                    "total_terms": 3,
+                    "total_weeks": 24,
+                    "total_months": 6,
+                    "total_hours": 120,
+                    "total_credits": 12,
+                    "weekly_hours": 10
+                }
+            }
+        }

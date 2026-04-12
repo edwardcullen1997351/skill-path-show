@@ -1,0 +1,91 @@
+{
+  "curriculum_parsing": [
+    {
+      "input": "CS 101: Introduction to Programming\nCS 201: Data Structures\nCS 301: Web Development",
+      "output": {
+        "skills": [
+          {"name": "programming_basics", "proficiency": "intermediate", "source": "CS 101"},
+          {"name": "data_structures", "proficiency": "intermediate", "source": "CS 201"},
+          {"name": "web_development", "proficiency": "beginner", "source": "CS 301"}
+        ],
+        "subjects": ["Introduction to Programming", "Data Structures", "Web Development"],
+        "proficiency_level": "intermediate"
+      }
+    },
+    {
+      "input": "MATH 101: Calculus I\nMATH 201: Linear Algebra\nSTAT 301: Probability and Statistics",
+      "output": {
+        "skills": [
+          {"name": "calculus", "proficiency": "intermediate", "source": "MATH 101"},
+          {"name": "linear_algebra", "proficiency": "intermediate", "source": "MATH 201"},
+          {"name": "statistics", "proficiency": "advanced", "source": "STAT 301"}
+        ],
+        "subjects": ["Calculus I", "Linear Algebra", "Probability and Statistics"],
+        "proficiency_level": "intermediate"
+      }
+    },
+    {
+      "input": "CS 401: Machine Learning\nCS 402: Deep Learning\nCS 403: Computer Vision",
+      "output": {
+        "skills": [
+          {"name": "machine_learning", "proficiency": "advanced", "source": "CS 401"},
+          {"name": "deep_learning", "proficiency": "advanced", "source": "CS 402"},
+          {"name": "computer_vision", "proficiency": "advanced", "source": "CS 403"}
+        ],
+        "subjects": ["Machine Learning", "Deep Learning", "Computer Vision"],
+        "proficiency_level": "advanced"
+      }
+    }
+  ],
+  "skill_normalization": [
+    {
+      "input": "React.js",
+      "output": "react"
+    },
+    {
+      "input": "Machine Learning",
+      "output": "machine_learning"
+    },
+    {
+      "input": "SQL - Structured Query Language",
+      "output": "sql"
+    },
+    {
+      "input": "Web Development using HTML CSS JavaScript",
+      "output": "web_development"
+    },
+    {
+      "input": "Python for Data Science",
+      "output": "python"
+    }
+  ],
+  "recommendation_explanation": [
+    {
+      "input": {
+        "missing_skills": ["react", "typescript", "api_design"],
+        "recommended_subjects": [
+          {"subject_name": "React Development", "covered_skills": ["react", "javascript"]},
+          {"subject_name": "API Design", "covered_skills": ["api_design", "rest"]}
+        ],
+        "target_role": "full_stack_developer"
+      },
+      "output": "This learning path will transform you into a full-stack developer..."
+    }
+  ],
+  "interview_topics": [
+    {
+      "input": {
+        "skills": ["python", "machine_learning", "data_analysis"],
+        "role": "data_scientist"
+      },
+      "output": [
+        "Machine Learning Algorithms",
+        "Statistical Analysis",
+        "Feature Engineering",
+        "Model Evaluation",
+        "Python Programming",
+        "Data Visualization"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "python": {
+    "name": "Python",
+    "level": "beginner",
+    "parent": "programming",
+    "children": ["data_science", "web_development", "automation"],
+    "related": ["programming_basics"],
+    "description": "Python programming language"
+  },
+  "javascript": {
+    "name": "JavaScript",
+    "level": "beginner",
+    "parent": "programming",
+    "children": ["web_development", "nodejs", "frontend_frameworks"],
+    "related": ["html_css"],
+    "description": "JavaScript programming language"
+  },
+  "programming": {
+    "name": "Programming",
+    "level": "foundational",
+    "parent": null,
+    "children": ["python", "javascript", "java", "cpp", "csharp"],
+    "related": ["programming_basics", "algorithms", "data_structures"],
+    "description": "Core programming concepts"
+  },
+  "programming_basics": {
+    "name": "Programming Basics",
+    "level": "beginner",
+    "parent": "computer_science",
+    "children": [],
+    "related": ["programming", "algorithms"],
+    "description": "Basic programming concepts and logic"
+  },
+  "algorithms": {
+    "name": "Algorithms",
+    "level": "intermediate",
+    "parent": "computer_science",
+    "children": [],
+    "related": ["data_structures", "programming_basics"],
+    "description": "Algorithm design and analysis"
+  },
+  "data_structures": {
+    "name": "Data Structures",
+    "level": "intermediate",
+    "parent": "computer_science",
+    "children": [],
+    "related": ["algorithms"],
+    "description": "Data structures and their applications"
+  },
+  "data_science": {
+    "name": "Data Science",
+    "level": "intermediate",
+    "parent": "python",
+    "children": ["machine_learning", "data_analysis", "data_visualization"],
+    "related": ["statistics", "python"],
+    "description": "Data science and analysis"
+  },
+  "machine_learning": {
+    "name": "Machine Learning",
+    "level": "advanced",
+    "parent": "data_science",
+    "children": ["deep_learning", "nlp", "computer_vision"],
+    "related": ["statistics", "algorithms"],
+    "description": "Machine learning algorithms and models"
+  },
+  "deep_learning": {
+    "name": "Deep Learning",
+    "level": "advanced",
+    "parent": "machine_learning",
+    "children": ["computer_vision", "nlp"],
+    "related": ["neural_networks"],
+    "description": "Neural networks and deep learning"
+  },
+  "nlp": {
+    "name": "Natural Language Processing",
+    "level": "advanced",
+    "parent": "machine_learning",
+    "children": [],
+    "related": ["deep_learning", "text_processing"],
+    "description": "NLP and text processing"
+  },
+  "computer_vision": {
+    "name": "Computer Vision",
+    "level": "advanced",
+    "parent": "machine_learning",
+    "children": [],
+    "related": ["deep_learning", "image_processing"],
+    "description": "Image and video analysis"
+  },
+  "data_analysis": {
+    "name": "Data Analysis",
+    "level": "intermediate",
+    "parent": "data_science",
+    "children": [],
+    "related": ["statistics", "data_visualization"],
+    "description": "Data analysis and manipulation"
+  },
+  "data_visualization": {
+    "name": "Data Visualization",
+    "level": "intermediate",
+    "parent": "data_science",
+    "children": [],
+    "related": ["data_analysis"],
+    "description": "Data visualization techniques"
+  },
+  "statistics": {
+    "name": "Statistics",
+    "level": "intermediate",
+    "parent": "data_skills",
+    "children": [],
+    "related": ["data_analysis", "machine_learning"],
+    "description": "Statistical analysis and methods"
+  },
+  "web_development": {
+    "name": "Web Development",
+    "level": "intermediate",
+    "parent": "python",
+    "children": ["frontend", "backend"],
+    "related": ["html_css", "javascript", "api_design"],
+    "description": "Web application development"
+  },
+  "frontend": {
+    "name": "Frontend Development",
+    "level": "intermediate",
+    "parent": "web_development",
+    "children": ["react", "vue", "angular"],
+    "related": ["html_css", "javascript"],
+    "description": "Client-side web development"
+  },
+  "backend": {
+    "name": "Backend Development",
+    "level": "intermediate",
+    "parent": "web_development",
+    "children": ["api_design", "database"],
+    "related": ["nodejs", "python", "java"],
+    "description": "Server-side web development"
+  },
+  "react": {
+    "name": "React",
+    "level": "intermediate",
+    "parent": "frontend",
+    "children": [],
+    "related": ["javascript", "typescript"],
+    "description": "React.js library"
+  },
+  "api_design": {
+    "name": "API Design",
+    "level": "intermediate",
+    "parent": "backend",
+    "children": [],
+    "related": ["rest", "graphql", "backend"],
+    "description": "API design and development"
+  },
+  "sql": {
+    "name": "SQL",
+    "level": "intermediate",
+    "parent": "databases",
+    "children": [],
+    "related": ["database_design", "postgresql", "mysql"],
+    "description": "Structured Query Language"
+  },
+  "database_design": {
+    "name": "Database Design",
+    "level": "intermediate",
+    "parent": "databases",
+    "children": [],
+    "related": ["sql", "nosql"],
+    "description": "Database design principles"
+  },
+  "git": {
+    "name": "Git",
+    "level": "beginner",
+    "parent": "tools",
+    "children": [],
+    "related": ["version_control"],
+    "description": "Version control with Git"
+  },
+  "docker": {
+    "name": "Docker",
+    "level": "intermediate",
+    "parent": "devops",
+    "children": [],
+    "related": ["kubernetes", "containerization"],
+    "description": "Containerization with Docker"
+  },
+  "cloud_computing": {
+    "name": "Cloud Computing",
+    "level": "intermediate",
+    "parent": "devops",
+    "children": ["aws", "azure", "gcp"],
+    "related": ["docker", "devops"],
+    "description": "Cloud platforms and services"
+  },
+  "computer_science": {
+    "name": "Computer Science",
+    "level": "foundational",
+    "parent": null,
+    "children": ["programming_basics", "algorithms", "data_structures", "object_oriented"],
+    "related": [],
+    "description": "Computer science fundamentals"
+  },
+  "data_skills": {
+    "name": "Data Skills",
+    "level": "foundational",
+    "parent": null,
+    "children": ["data_analysis", "data_visualization", "statistics", "data_science"],
+    "related": [],
+    "description": "Data-related skills"
+  },
+  "databases": {
+    "name": "Databases",
+    "level": "intermediate",
+    "parent": null,
+    "children": ["sql", "database_design", "mongodb"],
+    "related": [],
+    "description": "Database technologies"
+  },
+  "devops": {
+    "name": "DevOps",
+    "level": "advanced",
+    "parent": null,
+    "children": ["docker", "cloud_computing", "kubernetes"],
+    "related": [],
+    "description": "DevOps practices and tools"
+  },
+  "tools": {
+    "name": "Tools & Technologies",
+    "level": "foundational",
+    "parent": null,
+    "children": ["git", "docker"],
+    "related": [],
+    "description": "Development tools"
+  }
+}
